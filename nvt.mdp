@@ -1,0 +1,34 @@
+; NVT equilibration parameters
+title                    = NVT equilibration of aptamer
+integrator               = md           ; Verlet leapfrog integrator
+dt                       = 0.001        ; timestep in ps (2 fs)
+nsteps                   = 100000        ; 100 ps
+nstxout                  = 5000         ; coordinates every 10 ps
+nstvout                  = 5000         ; velocities every 10 ps
+nstenergy                = 500          ; energies every 1 ps
+nstlog                   = 500
+define = -DDNAPOSRES2 -DDNAPOSRES1
+tcoupl                   = v-rescale 
+tc-grps                  = System
+tau_t                    = 0.1
+ref_t                    = 300
+
+pcoupl                   = no
+
+constraints              = h-bonds
+constraint_algorithm     = lincs
+lincs_iter               = 2
+lincs_order              = 6
+
+cutoff-scheme            = Verlet
+ns_type                  = grid
+nstlist                  = 10
+rlist                    = 1.0
+rcoulomb                 = 1.0
+rvdw                     = 1.0
+
+coulombtype              = PME
+pme_order                = 4
+fourierspacing           = 0.16
+
+DispCorr                 = EnerPres
